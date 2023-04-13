@@ -1,0 +1,347 @@
+\documentclass{article}
+\input{preamble.tex}
+
+% Title
+\title{MATH 201}
+\subtitle{Linear Algebra and Vector Geometry}
+\author{Open Courseware}
+\kind{Lecture \#5 \hfill \today}
+\date{\today}
+
+% Document
+\begin{document}
+
+% front matter
+\mnfrontpage
+\tableofcontents
+
+% main matter
+\section{Operations of Matrices}
+
+\begin{definition}[Matrix]
+    It is basically a table of numbers arranged in rows and columns.
+\end{definition}
+
+\begin{example}[Matrix]
+    \[
+        A_{2\times3} =
+        \begin{bmatrix}
+            1 & 2 & 3 \\
+            4 & 5 & 6
+        \end{bmatrix}
+    .\] 
+\end{example}
+
+If we have a matrix in which the number of rows is equal to the number of columns, then it is called a square matrix.
+
+\begin{note}
+    For symbol notation, we usually use the capital letters for matrices and the small ones for the entries:
+    \[
+        A_{m\times n} =
+        \begin{bmatrix} 
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn}
+        \end{bmatrix} 
+    .\] 
+\end{note}
+
+\subsection{Addition of Matrices}
+
+We can only add two matrices if they have the same dimensions. 
+
+\begin{example}
+    \[
+        \begin{bmatrix}
+            1 & 2 & 3 \\
+            4 & 5 & 6
+        \end{bmatrix}
+        + 
+        \begin{bmatrix}
+            1 & 2 & 3 \\
+            4 & 5 & 6
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            2 & 4 & 6 \\
+            8 & 10 & 12
+        \end{bmatrix}
+    .\]
+\end{example}
+
+\subsection{Scalar Multiplication of a Matrix}
+
+\[
+    k
+    \begin{bmatrix} 
+        a_{11} & a_{12} \\
+        a_{21} & a_{22}
+    \end{bmatrix} 
+    =
+    \begin{bmatrix} 
+        ka_{11} & ka_{12} \\
+        ka_{21} & ka_{22}
+    \end{bmatrix}
+.\] 
+
+\begin{example}
+    \[
+        2
+        \begin{bmatrix} 
+            1 & 2 \\
+            3 & 4
+        \end{bmatrix} 
+        =
+        \begin{bmatrix} 
+            2 & 4 \\
+            6 & 8
+        \end{bmatrix}
+    .\]
+\end{example}
+
+\subsection{Multiplication of Matrices}
+
+To be able to multiply two matrices, the number of columns of the first matrix must be equal to the number of rows of the second matrix.
+
+\[
+    A_{m\times n} \times B_{n\times p} = C_{m\times p}
+.\] 
+
+\begin{example}[Compute AB]
+    \[
+        A =
+        \begin{bmatrix}
+            2 & 3 \\
+            1 & -5
+        \end{bmatrix},
+        B =
+        \begin{bmatrix}
+            4 & 3 & 6 \\
+            1 & -2 & 3
+        \end{bmatrix}
+    \] 
+    \begin{align*}
+        AB &= 
+        \begin{bmatrix}
+            2 & 3 \\
+            1 & -5
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & 3 & 6 \\
+            1 & -2 & 3
+        \end{bmatrix}\\
+           &=
+        \begin{bmatrix}
+            2 \times 4 + 3 \times 1 & 2 \times 3 + 3 \times (-2) & 2 \times 6 + 3 \times 3 \\
+            1 \times 4 + (-5) \times 1 & 1 \times 3 + (-5) \times (-2) & 1 \times 6 + (-5) \times 3
+        \end{bmatrix}\\
+           &=
+        \begin{bmatrix}
+            10 & -4 & 18 \\
+            1 & 11 & 3
+        \end{bmatrix}
+    .\end{align*}
+\end{example}
+
+\subsubsection{Row-vector rule}%
+\[
+    (AB)_{ij} = \text{row}_{i}(A) \cdot \vec{b}_j
+.\] 
+
+\begin{example}
+    If we want to find the 3rd element in the 1st row of $AB$, we dot product $A$'s 1st row with $B$'s 3rd column.
+\end{example}
+
+\hh
+
+For $A_{m\times n}$ and $B_{n\times p}$,
+\begin{itemize}
+    \item $AB$ exist if $n = p$.
+    \item $AB$ exist if $m\times q$ matrix.
+    \item $(AB)_{ij} = \sum_{k=1}^n a_{ik}b_{kj}$.
+\end{itemize}
+
+\begin{example}[Find $AB$ and $BA$]
+    \[
+        A =
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix},
+        B =
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+    \] 
+    \begin{align*}
+        AB &= 
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix}
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            2 & 5 \\
+            4 & -3
+        \end{bmatrix}\\
+        BA &=
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            0&7\\
+            4&-2
+        \end{bmatrix}
+    .\end{align*}
+\end{example}
+
+\begin{note}
+    \[
+        AB \neq BA
+    .\] 
+\end{note}
+
+\hh\newpage
+
+\begin{example}[$AB=0$ while $A \neq 0$ and $B\neq 0$]
+    \[
+        AB = 
+        \begin{bmatrix} 1&3\\2&6 \end{bmatrix}
+        \begin{bmatrix} 3&6\\-1&-2 \end{bmatrix} 
+        =
+        \begin{bmatrix} 0&0\\0&0 \end{bmatrix} 
+    .\] 
+\end{example}
+
+\begin{example}[Find $(A+B)^2$, $A^2+2AB+B^2$]
+    \[
+        A =
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix},
+        B =
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+    .\] 
+    \begin{align*}
+        (A+B)^2 &= (A+B)(A+B)\\
+                &= 
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix}
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}\\
+                &=
+        \begin{bmatrix}
+            13&8\\
+            8&5
+        \end{bmatrix}
+    .\end{align*}
+    \begin{align*}
+        A^2 &=
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix}
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            7&1\\
+            0&7
+        \end{bmatrix}
+        \\
+        B^2 &=
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            4&-4\\
+            0&4
+        \end{bmatrix}
+        \\
+        AB &=
+        \begin{bmatrix}
+            1&3\\
+            2&-1
+        \end{bmatrix}
+        \begin{bmatrix}
+            2&-1\\
+            0&2
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            2&5\\
+            4&-4
+        \end{bmatrix}
+        \\
+        2AB &= \begin{bmatrix} 4&10\\8&-8 \end{bmatrix} 
+    .\end{align*}
+    \[
+        A^2+B^2+2AB = \begin{bmatrix} 15&6\\8&-3 \end{bmatrix}
+    .\] 
+
+\end{example}
+
+\begin{note}
+    \[
+        (A+B)^2 \neq A^2+2AB+B^2
+    .\] 
+    \[
+        (A+B)^2 = A^2+AB+BA+B^2
+    .\] 
+\end{note}
+
+\begin{example}[$AC=BC$ does not imply $A=B$]
+    \[
+        A =
+        \begin{bmatrix}
+            1&3\\
+            0&1
+        \end{bmatrix},
+        B =
+        \begin{bmatrix}
+            2&4\\
+            2&3
+        \end{bmatrix},
+        C =
+        \begin{bmatrix}
+            1&-2\\
+            -1&2
+        \end{bmatrix}
+    .\] 
+    \begin{align*}
+        AC &=
+        \begin{bmatrix} -2&4\\-1&2 \end{bmatrix} \\
+        BC &=
+        \begin{bmatrix} -2&4\\-1&2 \end{bmatrix} 
+    .\end{align*}
+\end{example}
+
+\end{document}
