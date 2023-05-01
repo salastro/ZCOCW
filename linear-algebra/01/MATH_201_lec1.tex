@@ -1,0 +1,343 @@
+\documentclass{article}
+\input{preamble.tex}
+
+% Title
+\title{MATH 201}
+\subtitle{Linear Algebra and Vector Geometry}
+\author{Open Courseware}
+\kind{Lecture \#1 \hfill \today}
+\date{\today}
+
+% Document
+\begin{document}
+
+% front matter
+\mnfrontpage
+\tableofcontents
+
+% main matter
+\section{Lec 1}
+
+\begin{definition}[Linear Equation]
+   It is an equation where all the variables have a power of 1, with the general formula $a_1x_1+a_2x_2+a_3x_3.....=b$.
+\end{definition}
+
+\begin{example}
+    \[
+       x=y; y=2x+3
+    .\] 
+\end{example}
+
+It is called a linear equation because, in 2-D, its solution is a point of intersection of two straight lines. and the two variables it can have are x and y. While in 3-D, the Solution is a plane produced by the intersections of straight lines. 
+
+\begin{definition}[A system of linear equations ]
+    It is a group of linear equations with
+the Same Shared Solution, which is solved simultaneously. 
+\end{definition}
+\begin{center}
+
+$\begin{cases}
+    a_{11}x_1+a_{12}x_2+a_{13}x_3.....=b_1\\
+  a_{21}x_1+a_{22}x_2+a_{23}x_3.....=b_2\\
+  a_{31}x_1+a_{32}x_2+a_{33}x_3.....=b_3
+\end{cases}$
+  
+\end{center}
+here is a system of three equations of three variables, more equations, and variables can be included in one system of equations.
+\begin{example}
+   \[
+      x+2y=5 
+      .\]
+      \[
+      x+3y=8 
+      .\]
+    \[
+     x-x+2y-3y=8-5 \Rightarrow y=3      
+    \]      
+      solving in one of the first two equations gives $x=-1$
+\end{example}
+
+we can say that 
+
+\[
+   \begin{cases}
+        x+2y=5 \\ 
+        y=3
+    \end{cases} 
+    and  \hspace{1cm} 
+    \begin{cases} 
+        x+2y=5 \\ 
+        x+3y=8 
+    \end{cases} \\
+.\]
+are a row equivalent system, which means they can be changed into each other by elementary operations. 
+
+\subsection{Representing a system of linear equations in a matrix }
+
+$\begin{cases}
+    a_{11}x_1+a_{12}x_2+.....a_{1n}x_n=b_1\\
+    a_{21}x_1+a_{22}x_2+.....a_{2n}x_n=b_2\\
+    a_{n1}x_1+a_{n2}x_2+.....a_{nn}x_n=b_n 
+\end{cases} \Rightarrow
+\begin{bmatrix}   
+            a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+            a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+            \vdots & \ddots & \vdots & \vdots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn} & \cdots b_n
+\end{bmatrix}$
+
+in the last raw of the matrix  $a_{n1} ,a_{n2} , a_{nn}$ represent the coefficient of the matrix.
+\begin{example}
+    \[
+         \begin{cases}
+            2x+y+z=1\\ -y-2x=-4\\ -4x=-4
+         \end{cases} 
+    \Rightarrow
+            \begin{bmatrix}
+                 2&1&1&1\\
+                -2&-1&0&-4\\
+                -4&0&0&-4\\
+            \end{bmatrix} 
+   .\]
+\end{example}
+We can perform a number of operations on a matrix that will also not affect the solution.
+               \begin{enumerate}   
+                   \item Multiplication or division of any row by another one. 
+                   \item Adding any 2 rows to each other.
+                   \item Interchanging any rows.
+               \end{enumerate}
+\begin{note}
+    this is called Gauss elimination with back substitution.
+\end{note}
+
+ \begin{example}[system of two variables]
+    \[
+         \begin{cases}
+            2x+y=4\\ x+2y=5
+          \end{cases} \Rightarrow
+          \begin{cases}
+            x+2y=5\\ 2x+y=4 
+          \end{cases}\Rightarrow
+          \begin{cases}
+            -2x-4y=-10\\ 2x+y=4 
+          \end{cases}\Rightarrow
+          \begin{cases}
+            x+2y=5\\ -3y=-6
+          \end{cases}
+    \]
+ \end{example}            
+ Now for a bigger system
+ \[
+   \begin{cases}
+        2x+y+z=1\\ 6x+2y+z=-1 \\ -2x+2y+z=7
+   \end{cases} \Rightarrow 
+   \begin{bmatrix}
+        2&1&1&1\\ 6&2&1&-1\\ -2&2&1&7
+   \end{bmatrix}
+ \]
+We want to reach something like this:
+\begin{center}
+     $2x+y+z=1$\\ 
+   $()y+()z=()$\textrightarrow no x\\
+   or $()z=()$ \textrightarrow no x or y 
+\end{center}
+So we keep x in the 1st equation and eliminate it from the rest, then we keep y in the 2nd equation and the 1st and eliminate it from the 3rd, and so on... 
+\begin{example}
+    \[
+    1
+    \begin{bmatrix}
+        2&1&1&1\\ 6&2&1&-1\\ -2&2&1&7
+    \end{bmatrix} \xrightarrow{R_1x-3+R_2}
+    \begin{bmatrix}
+        2&1&1&1\\ 0&-1&-2&-4\\ -2&2&1&7
+    \end{bmatrix}\\
+    \]
+to eliminate 6 we multiply the 1st row by -3 and add it to the 2nd one
+     \[
+     2
+      \begin{bmatrix}
+        2&1&1&1\\ 0&-1&-2&-4\\ -2&2&1&7
+      \end{bmatrix}\xrightarrow{R_1+R_3}
+      \begin{bmatrix}
+          2&1&1&1\\ 0&-1&-2&-4\\ 0&3&2&8
+      \end{bmatrix}\\
+     \]
+     \[
+     3
+     \begin{bmatrix}
+          2&1&1&1\\ 0&-1&-2&-4\\ 0&3&2&8
+      \end{bmatrix}\xrightarrow{R_2x_3+R_3}
+      \begin{bmatrix}
+           2&1&1&1\\ 0&-1&-2&-4\\ 0&0&-4&-4
+      \end{bmatrix} \rightarrow \text{This is called the echelon form }
+     \]
+so, we can now write it as
+\begin{align*}
+        2x+y+z=1\\
+        -y-2z=-4 \Rightarrow y=4-2z\\ 
+        -4z=-4 \Rightarrow z=1
+\end{align*}
+by substitution, we can get the solution which is:
+\[ x=-1  ;  y=2   ;  z=1 \]
+\end{example}
+
+\begin{note}
+the echelon form should look like this:\\
+    $\begin{bmatrix}
+        \blacksquare & \square & \square\\
+        \triangle & \blacksquare & \square\\
+        \triangle & \triangle &   \blacksquare
+    \end{bmatrix}$ \textrightarrow where $\blacksquare$ is any non-zero(pivot) and  $\square$ is any number.
+\end{note}
+\begin{note}
+    to check your answer substitute in all equations of the system. 
+\end{note}
+Now let's see if every system of linear equations has a solution and if it does is it a unique one? 
+\begin{enumerate}
+\item
+    \[
+    \begin{cases}
+        x_1-2x_2=-1\\-x_1+3x_2=3
+    \end{cases}\Rightarrow 
+    \begin{bmatrix}
+        1&-2&-1\\ -1&3&3
+    \end{bmatrix} \xrightarrow{R
+    -1+R_2}
+    \begin{bmatrix}
+        1&-2&-1\\ 0&1&2
+    \end{bmatrix}
+    \]
+so, \[x_1=3 ; X_2=2\]
+this system has a unique solution that represents a point of intersection of the two lines that are represented by the system's equations.  
+\item
+    \[
+    \begin{cases}
+        x_1-2x_2=-1\\-x_1+2x_2=1
+    \end{cases}\Rightarrow \text{these are two coincident lines}
+    \]
+so the solution will be the line this system represents\textrightarrow infinite points \textrightarrow infinite solutions.\\
+For the solution, we write the general form $x_1=2x_2+1$
+
+\item If the two equations of the system represent two parallel lines then there is no solution 
+    \[
+     \begin{cases}
+        x_1-2x_1=-1\\-x_1+2x_1=3
+    \end{cases} \Rightarrow \text{parallel lines} 
+    \]
+\begin{align}
+    \begin{bmatrix}
+        1&-2&1\\ -1&2&3 
+    \end{bmatrix}\xrightarrow{R_1+R_2}
+    \begin{bmatrix}
+         1&-2&1\\ 0&0&2
+    \end{bmatrix} \rightarrow x_1 +2x_2=-1 
+\end{align}
+solving the equation gives 0=2 \textrightarrow contradiction 
+\end{enumerate}
+Now for 3 equations system:
+\[
+\begin{bmatrix}
+    1&2&2&2\\ 0&2&2&4\\ 0&0&0&0
+\end{bmatrix} \rightarrow \text{this is the echelon form, but there are pivots for x,y and not for z}
+\]
+\[
+\begin{cases}
+    x+y+2x=2 \\ 2y+2z=4
+\end{cases} \rightarrow \text{any value of z would work}\ \rightarrow \text{there are infinite solutions.}\ 
+\]
+\begin{note}
+    when we don't find a pivot for one of the variables we call it"the pivot-free variable" and the others are "the pivot variables".
+\end{note}
+
+\begin{enumerate}
+    \item   
+    $\begin{bmatrix}
+        \blacksquare & \square & \square& \square\\
+        \triangle & \blacksquare & \square& \square\\
+        \triangle & \triangle &   \blacksquare& \square
+    \end{bmatrix}$ \textrightarrow unique solution 
+    \item 
+     $\begin{bmatrix}
+        \blacksquare & \square & \square& \square\\
+        \triangle & \blacksquare & \square& \square\\
+        \triangle & \triangle &\triangle & \triangle 
+    \end{bmatrix}$ \textrightarrow infinite solution 
+    \item
+     $\begin{bmatrix}
+        \blacksquare & \square & \square& \square\\
+        \triangle & \blacksquare & \square& \square\\
+        \triangle & \triangle &  \triangle & \blacksquare
+    \end{bmatrix}$ \textrightarrow contradiction(no solution )
+\end{enumerate}
+where $\blacksquare$ is any non-zero(pivot) and  $\square$ is any number including zero.
+\subsection{Row echelon form:}
+\begin{enumerate}
+    \item All non-Zero rows are above zero rows.
+    \item First number of a row is on the right of the first number (pivot) in the row above.
+    \item All entries below each pivot are zero.
+\end{enumerate}
+Note:
+\begin{itemize}
+    \item If there are any free variables, that means that Now the system has infinite solutions.
+    \item If there are any Contradictions, that means that the system has no solution.
+    \item If all pivots are present (no. of pivots = of variables), then the system has one, unique solution.
+    \item A system of equations is Consistent if it has any no of solutions. 
+    \item A system of equations is inconsistent if
+it has no solutions.
+\end{itemize}
+\begin{example}
+    $\begin{cases}
+        x_2-4x_3=8\\ 2x_1 -3x_2+2x_3=1 \\ 4x_1 -8x_2+12x_3=1 
+    \end{cases} \rightarrow 
+    \begin{bmatrix}
+        0&1&-4&8 \\ 2&-3&2&1 \\ 4&-8&12&1 
+    \end{bmatrix} \xrightarrow[R_2\leftrightarrow R_1]{-2R_2+R_3}
+    \begin{bmatrix}
+        2&-3&2&1 \\ 0&1&-4&8 \\ 0&-2&8&-1 
+    \end{bmatrix}\\ \xrightarrow{2R_2+R_3}
+    \begin{bmatrix}
+        2&-3&2&1 \\ 0&1&-4&8 \\ 0&0&0&15 
+    \end{bmatrix} \rightarrow 0=15$ Contradiction -no solution-.  
+\end{example}
+\begin{example}
+    $\begin{bmatrix}
+        1&1&2&2 \\ 1&1&2&3\\ 1&1&2&4
+    \end{bmatrix}$\textrightarrow 3 parallel planes which mean that there is no solution. 
+\end{example}
+\begin{note}
+    the ratio between entries above each other $\neq1$ always/ is not constant, so which means they are parallel, not coincident. 
+\end{note}
+\begin{example}
+    $A \begin{bmatrix}
+        1&1&2&2\\ 0&2&1&4\\ 0&0&0&3
+    \end{bmatrix} \rightarrow \text{No solution}$ 
+    $ B \begin{bmatrix}
+        1&1&2&2\\ 0&2&1&4\\ 0&0&5&0
+    \end{bmatrix} \rightarrow \text{Unique solution}$ \\
+    $ C \begin{bmatrix}
+        1&1&2&2&4\\ 0&2&1&4&4\\ 0&0&1&0&3 \\ 0&0&0&0&4
+    \end{bmatrix} \rightarrow \text{No solution}$ 
+     $ D \begin{bmatrix}
+        1&1&2&2&4\\ 0&2&1&4&4\\ 0&0&0&0&3 \\ 0&0&0&0&0
+    \end{bmatrix} \rightarrow \text{No solution}$ \\
+     $ E \begin{bmatrix}
+        1&1&2&2&4\\ 0&2&1&4&4\\ 0&0&0&0&4
+    \end{bmatrix} \rightarrow \text{No solution}$ \\
+     $  F \begin{bmatrix}
+        1&1&2&2&4\\ 0&2&1&4&4\\ 0&0&0&0&0 \\ 0&0&0&0&0
+    \end{bmatrix} \rightarrow \text{infinte solutions}\rightarrow \begin{cases}
+        x_1+x_2+x_2+2x_3+2x_4=4\\ 2x_2+x_3+4x_4=4
+    \end{cases}$ \\
+     $ G \begin{bmatrix}
+        1&1&2\\ 0&2&1\\ 0&0&0 
+    \end{bmatrix} \rightarrow \text{Unique solution} \rightarrow 2x_2=1\rightarrow x_2 =\frac{1}{2} ,x_1=\frac{3}{2}$ \\
+     $ H \begin{bmatrix}
+        1&1&2\\ 0&2&1\\ 0&0&4
+    \end{bmatrix} \rightarrow \text{No solution} \rightarrow \text{2 variables-contradiction-}$ 
+\end{example}
+the general solution for example F is \begin{itemize}
+    \item $x_2= \frac{4-x_3-4x_4}{2}$
+    \item $x_1=4-2x_3-2x_4-x_2=4-2x_3-2x_4- \frac{4-x_3-4x_4}{2}$
+\end{itemize}
+\end{document}
+
